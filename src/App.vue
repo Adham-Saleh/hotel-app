@@ -1,14 +1,30 @@
 <template>
-  <navbar />
-  <router-view />
+  <navbar :userState="userState"/>
+  <router-view @user="userInfo" :userState="userState" />
 </template>
 
 <script>
 import navbar from "@/components/navBar.vue";
+import { toHandlers } from "vue";
 
 export default {
   components: { navbar },
-  mounted() {},
+  data() {
+    return {
+      userState: null,
+    };
+  },
+  methods: {
+    userInfo(user) {
+      this.userState = user;
+      console.log(this.userState);
+    },
+  },
+  mounted() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) return;
+    this.userState = user;
+  },
 };
 </script>
 

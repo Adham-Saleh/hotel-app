@@ -14,10 +14,14 @@
           <span>{{ loginStatusText }}</span>
           <button class="btn-close" data-bs-dismiss="alert"></button>
         </div>
-        <div class="text-start">
+        <div class="text-start" v-if="!authentication">
           <h5>Login to your account</h5>
         </div>
-        <form class="form text-start" v-if="!authentication" @submit.prevent="checkAccountValidation">
+        <form
+          class="form text-start"
+          v-if="!authentication"
+          @submit.prevent="checkAccountValidation"
+        >
           <div class="form-floating mt-2">
             <input
               type="email"
@@ -46,7 +50,7 @@
           </div>
         </form>
         <div v-else>
-          <router-link :to="{name: 'hotels'}">Browse Hotels</router-link>
+          <router-link :to="{ name: 'hotels' }">Browse Hotels</router-link>
         </div>
       </div>
     </div>
@@ -61,6 +65,7 @@ export default {
       password: "",
 
       authentication: false,
+      currentUser: JSON.parse(localStorage.getItem("user")) || null,
 
       ShowLoginStatus: false,
       loginStatus: "",
@@ -78,6 +83,9 @@ export default {
           this.authentication = true;
           this.loginStatus = "success";
           this.loginStatusText = "logged in successfully";
+          this.currentUser = { email: this.email, password: this.password };
+          localStorage.setItem("user", JSON.stringify(this.currentUser));
+          this.$emit('user', this.currentUser);
         }
       });
 

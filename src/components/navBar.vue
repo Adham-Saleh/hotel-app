@@ -41,7 +41,10 @@
             <a class="nav-link" href="#">About</a>
           </li>
         </ul>
-        <div class="navbar-nav d-md-flex text-start w-100 justify-content-end">
+        <div
+          class="navbar-nav d-md-flex text-start w-100 justify-content-end"
+          v-if="!userState"
+        >
           <li class="nav-link">
             <router-link
               :to="{ name: 'login' }"
@@ -59,13 +62,64 @@
             >
           </li>
         </div>
+        <div
+          class="navbar-nav d-md-flex text-start w-100 justify-content-end"
+          v-else
+        >
+          <li class="nav-link">
+            <div class="dropdown">
+              <button
+                class="btn btn-light dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+              <i class="bi bi-person-circle"></i>
+              {{ userState.email }}
+              </button>
+              <ul class="dropdown-menu dropdown-menu-light">
+                <li><a class="dropdown-item" href="#">
+                  <i class="bi bi-person"></i>
+                  Profile
+                </a></li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    <i class="bi bi-bookmark"></i>
+                    Favorates
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    <i class="bi bi-receipt"></i>
+                    Your bookings
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="btn btn-danger btn-sm ms-2" @click="logout" href="#">
+                    <i class="bi bi-box-arrow-left"></i>
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </div>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["userState"],
+  methods: {
+    logout() {
+      localStorage.removeItem("user");
+      location.reload();
+    }
+  }
+};
 </script>
 
 <style></style>
