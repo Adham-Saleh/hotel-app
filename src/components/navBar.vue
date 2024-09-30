@@ -3,7 +3,7 @@
     <div class="container-md">
       <a class="navbar-brand" href="#">Hotel app</a>
       <button
-        class="navbar-toggler"
+        class="navbar-toggler border-0"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"

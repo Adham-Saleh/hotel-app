@@ -83,7 +83,7 @@
           <h1 class="mt-4 mt-lg-0">Browse all hotels</h1>
           <p class="text-muted lead">find the best suits you...</p>
         </div>
-        <div class="row gx-5 gy-3">
+        <div class="row gx-md-5 gy-3">
           <div class="col-md-6 col-lg-4">
             <div class="card mt-2 mt-lg-0 shadow" style="width: 18rem">
               <img src="../assets/hotel-1.jpg" class="card-img-top" alt="..." />

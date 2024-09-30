@@ -1,6 +1,7 @@
 import HomeView from "@/views/HomeView.vue";
 import HotelsView from "@/views/HotelsView.vue";
 import LoginView from "@/views/loginView.vue";
+import NotFound from "@/views/NotFound.vue";
 import SignupView from "@/views/signupView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -24,6 +25,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: LoginView,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "notFound",
+    component: NotFound,
   },
 ];
 
